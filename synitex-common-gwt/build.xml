@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<project>
+
+    <import file="../common-build.xml" />
+
+    <target name="build">
+        <antcall target="gwtc" />
+    </target>
+
+    <target name="gwtc">
+        <property name="gwt.args" value="-localWorkers 1 -style OBF" />
+        <antcall target="gwtc-impl">
+            <param name="gwt.module" value="synitex.common.gwt.util.SynitexUtil" />
+            <param name="gwt.args" value="${gwt.args}" />
+            <param name="gwt.compile.dest" value="${dest.dir}/gwt" />
+        </antcall>
+        <antcall target="gwtc-impl">
+            <param name="gwt.module" value="synitex.common.gwt.hook.SynitexHook" />
+            <param name="gwt.args" value="${gwt.args}" />
+            <param name="gwt.compile.dest" value="${dest.dir}/gwt" />
+        </antcall>
+        <antcall target="gwtc-impl">
+            <param name="gwt.module" value="synitex.common.gwt.jsonrpc.SynitexJsonRpc" />
+            <param name="gwt.args" value="${gwt.args}" />
+            <param name="gwt.compile.dest" value="${dest.dir}/gwt" />
+        </antcall>
+        <antcall target="gwtc-impl">
+            <param name="gwt.module" value="synitex.common.gwt.validate.SynitexValidate0" />
+            <param name="gwt.args" value="${gwt.args}" />
+            <param name="gwt.compile.dest" value="${dest.dir}/gwt" />
+        </antcall>
+        <antcall target="gwtc-impl">
+            <param name="gwt.module" value="synitex.common.gwt.validate2.SynitexValidate" />
+            <param name="gwt.args" value="${gwt.args}" />
+            <param name="gwt.compile.dest" value="${dest.dir}/gwt" />
+        </antcall>
+    </target>
+
+</project>

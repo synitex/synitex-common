@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<project>
+
+    <property name="dest.dir" value="target" />
+
+    <target name="gwtc-impl" description="GWT compile to JavaScript">
+        <echo>gwt.compile.dest: ${gwt.compile.dest}</echo>
+        <echo>gwt.args: ${gwt.args}</echo>
+        <java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+            <classpath>
+                <pathelement location="src/main/java" />
+                <pathelement location="src/main/resources" />
+                <pathelement path="${compile_classpath}" />
+            </classpath>
+            <jvmarg value="-Xmx512M" />
+            <jvmarg value="-Xss256M" />
+            <arg line="-war" />
+            <arg value="${gwt.compile.dest}" />
+            <arg line="${gwt.args}" />
+            <arg value="${gwt.module}" />
+        </java>
+    </target>
+
+</project>
