@@ -11,6 +11,7 @@
 
     <repositories>
         <!-- Google Closure Templates jar is not in the central repository. So will use some public repository. -->
+        <!--
         <repository>
             <id>codedance on Github</id>
             <url>https://github.com/codedance/maven-repository/raw/master</url>
@@ -18,6 +19,11 @@
         <repository>
             <id>spring</id>
             <url>http://repo.springsource.org/release</url>
+        </repository>
+        -->
+        <repository>
+            <id>synitex</id>
+            <url>http://10.0.0.2:8081/nexus/content/groups/public/</url>
         </repository>
     </repositories>
 
@@ -31,6 +37,29 @@
         <guava.version>14.0.1</guava.version>
         <gwt.version>2.5.1</gwt.version>
     </properties>
+
+    <organization>
+        <name>Synitex</name>
+        <url>http://synitex.lv</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <id>sergey</id>
+            <name>Sergey</name>
+            <email>sergey@synitex.lv</email>
+            <url>http://sinica.me</url>
+            <organization>Synitex</organization>
+            <organizationUrl>http://synitex.lv</organizationUrl>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <properties>
+                <picUrl>https://pbs.twimg.com/profile_images/3762256738/195f3ac721125b7d63e4bfeea53be9d2.jpeg</picUrl>
+            </properties>
+        </developer>
+    </developers>
 
     <dependencyManagement>
         <dependencies>
@@ -290,6 +319,23 @@
         </resources>
 
     </build>
+
+    <distributionManagement>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>synitex</id>
+            <name>Synitex Corporate Repository</name>
+            <url>http://10.0.0.2:8081/nexus/content/repositories/releases</url>
+            <layout>default</layout>
+        </repository>
+        <snapshotRepository>
+            <uniqueVersion>true</uniqueVersion>
+            <id>synitex</id>
+            <name>Synitex Corporate Snapshots Repository</name>
+            <url>http://10.0.0.2:8081/nexus/content/repositories/snapshots</url>
+            <layout>default</layout>
+        </snapshotRepository>
+    </distributionManagement>
 
     <modules>
         <module>synitex-common-server</module>
