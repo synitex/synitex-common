@@ -10,22 +10,28 @@
     <version>1.0-SNAPSHOT</version>
 
     <repositories>
-        <!-- Google Closure Templates jar is not in the central repository. So will use some public repository. -->
-        <!--
-        <repository>
-            <id>codedance on Github</id>
-            <url>https://github.com/codedance/maven-repository/raw/master</url>
-        </repository>
-        <repository>
-            <id>spring</id>
-            <url>http://repo.springsource.org/release</url>
-        </repository>
-        -->
         <repository>
             <id>synitex</id>
-            <url>http://10.0.0.2:8081/nexus/content/groups/public/</url>
+            <url>http://nexus.synitex.com/content/groups/public/</url>
         </repository>
     </repositories>
+
+    <distributionManagement>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>synitex</id>
+            <name>Synitex Corporate Repository</name>
+            <url>http://nexus.synitex.com/content/repositories/releases/</url>
+            <layout>default</layout>
+        </repository>
+        <snapshotRepository>
+            <uniqueVersion>true</uniqueVersion>
+            <id>synitex</id>
+            <name>Synitex Corporate Snapshots Repository</name>
+            <url>http://nexus.synitex.com/content/repositories/snapshots/</url>
+            <layout>default</layout>
+        </snapshotRepository>
+    </distributionManagement>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -40,7 +46,7 @@
 
     <organization>
         <name>Synitex</name>
-        <url>http://synitex.lv</url>
+        <url>http://synitex.com</url>
     </organization>
 
     <developers>
@@ -319,23 +325,6 @@
         </resources>
 
     </build>
-
-    <distributionManagement>
-        <repository>
-            <uniqueVersion>false</uniqueVersion>
-            <id>synitex</id>
-            <name>Synitex Corporate Repository</name>
-            <url>http://10.0.0.2:8081/nexus/content/repositories/releases</url>
-            <layout>default</layout>
-        </repository>
-        <snapshotRepository>
-            <uniqueVersion>true</uniqueVersion>
-            <id>synitex</id>
-            <name>Synitex Corporate Snapshots Repository</name>
-            <url>http://10.0.0.2:8081/nexus/content/repositories/snapshots</url>
-            <layout>default</layout>
-        </snapshotRepository>
-    </distributionManagement>
 
     <modules>
         <module>synitex-common-server</module>
