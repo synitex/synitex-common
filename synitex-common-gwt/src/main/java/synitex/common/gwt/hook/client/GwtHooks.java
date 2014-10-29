@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class GwtHooks {
 
-    private static GwtHooks INSTANCE;
+    private static final GwtHooks INSTANCE = new GwtHooks();
 
     private Map<String, Supplier<GwtHook>> hooks = Maps.newHashMap();
     private Predicate<String> anyHookPredicate = new Predicate<String>() {
@@ -33,11 +33,11 @@ public class GwtHooks {
         return INSTANCE;
     }
 
+    private GwtHooks() {}
+
     public void register(Supplier<GwtHook> hookSupplier) {
         hooks.put(hookSupplier.get().getHookId(), hookSupplier);
     }
-
-    private GwtHooks() {}
 
     public void activate() {
         activate(null);
