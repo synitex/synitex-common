@@ -21,7 +21,7 @@ public class GwtHooks {
 
     private static GwtHooks INSTANCE;
 
-    private Map<String, GwtHook> hooks = Maps.newHashMap();
+    private Map<String, Supplier<GwtHook>> hooks = Maps.newHashMap();
     private Predicate<String> anyHookPredicate = new Predicate<String>() {
         @Override
         public boolean apply(String input) {
@@ -33,8 +33,8 @@ public class GwtHooks {
         return INSTANCE;
     }
 
-    public void register(GwtHook hook) {
-        hooks.put(hook.getHookId(), hook);
+    public void register(Supplier<GwtHook> hookSupplier) {
+        hooks.put(hookSupplier.get().getHookId(), hookSupplier);
     }
 
     private GwtHooks() {}
@@ -90,8 +90,9 @@ public class GwtHooks {
             boolean needToActivate = activateHookPredicate.apply(hookId);
             if(needToActivate) {
                 String hookData = hookElem.getInnerHTML();
-                GwtHook hook = hooks.get(hookId);
-                if (hook != null) {
+                Supplier<GwtHook> hookSupplier = hooks.get(hookId);
+                if (hookSupplier != null) {
+                    GwtHook hook = hookSupplier.get();
                     if(injector != null) {
                         injector.inject(hook);
                     }
