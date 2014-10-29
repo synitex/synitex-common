@@ -1,5 +1,7 @@
 package synitex.common.gwt.util.client;
 
+import com.google.common.base.Function;
+import com.google.common.collect.Lists;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArrayString;
 
@@ -42,6 +44,22 @@ public class JsObject extends JavaScriptObject {
         } catch (NumberFormatException ex) {
             log.log(WARNING, "Failed to parse Integer from = " + s, ex);
             return null;
+        }
+    }
+
+    protected final List<Integer> parseIntegers(String param) {
+        List<String> strings = parseStrings(param);
+        if(GwtHelper.isEmpty(strings)) {
+            return Collections.emptyList();
+        } else {
+            return Lists.newArrayList(
+                    Lists.transform(strings, new Function<String, Integer>() {
+                        @Override
+                        public Integer apply(String input) {
+                            return Integer.valueOf(input);
+                        }
+                    })
+            );
         }
     }
 
