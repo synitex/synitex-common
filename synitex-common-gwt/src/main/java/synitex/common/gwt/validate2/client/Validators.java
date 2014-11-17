@@ -5,6 +5,7 @@ import synitex.common.gwt.validate2.client.validators.EmailValidator;
 import synitex.common.gwt.validate2.client.validators.IntegerMandatoryValidator;
 import synitex.common.gwt.validate2.client.validators.MinIntegerValidator;
 import synitex.common.gwt.validate2.client.validators.MinLongValidator;
+import synitex.common.gwt.validate2.client.validators.StringLengthValidator;
 import synitex.common.gwt.validate2.client.validators.StringMandatoryValidator;
 
 public class Validators {
@@ -50,4 +51,7 @@ public class Validators {
         return new MinLongValidator(min);
     }
 
+    public static StringLengthValidator stringLengthValidator(int min, int max) {
+        return new StringLengthValidator(min, max);
+    }
 }
