@@ -27,6 +27,8 @@ public class Entity2SoyMapper implements IEntity2SoyMapper {
         primitiveTypes.add(Long.TYPE);
         primitiveTypes.add(Boolean.class);
         primitiveTypes.add(Boolean.TYPE);
+        primitiveTypes.add(Double.class);
+        primitiveTypes.add(Double.TYPE);
     }
 
     public Entity2SoyMapper() {
@@ -89,12 +91,14 @@ public class Entity2SoyMapper implements IEntity2SoyMapper {
 
                 } else if (primitiveTypes.contains(type)) {
 
-                    map.put(id, obj);
+                    if(type == Long.TYPE || type == Long.class) {
+                        Long longObj = (Long) obj;
+                        double doubleObj = longObj.doubleValue();
+                        map.put(id, doubleObj);
+                    } else {
+                        map.put(id, obj);
+                    }
 
-                /*} else if (type == LocaleString.class) {
-
-                    synitex.common.servermap.put(id, stringResolver.resolve((LocaleString) obj));
-                */
                 } else {
 
                     map.put(id, mapImpl(obj));
